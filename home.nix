@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home.username = "rajkumar";
@@ -14,15 +14,17 @@
 
   programs.git = {
     enable = true;
+    settings = {
+      user = { 
+        name = "rajcspsg";
 
-    userName = "rajcspsg";
-
-    userEmail = "rajcspsg+YOUR_USERNAME@users.noreply.github.com";
-
-    extraConfig = {
-     init.defaultBranch = "main";
-     push.autoSetupRemote = true;
-     core.editor = "nvim";
+        email = "rajcspsg+@users.noreply.github.com";
+      };
+      init.defaultBranch = "main";
+      push.autoSetupRemote = true;
+      core.editor = "nvim";
+    };
   };
-};
+
+  xdg.configFile."nvim".source = inputs.nvim-config;
 }
