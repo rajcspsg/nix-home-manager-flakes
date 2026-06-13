@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -16,6 +16,11 @@
   boot.loader.grub.useOSProber = true;
   # Use provided UUIDs instead of blkid probing (required for btrfs subvolumes)
   boot.loader.grub.fsIdentifier = "provided";
+  # boot.loader.systemd-boot.configurationLimit = 10;
+  # boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -51,6 +56,8 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
+  services.fwupd.enable = true;
+  services.fstrim.enable = true;
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
@@ -94,6 +101,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."rajkumar" = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     description = "rajkumar";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
@@ -107,7 +115,24 @@
 
   programs.neovim.enable = true;
   
-  programs.zsh.enable = true;
+  programs.zsh  = { 
+    enable = true; 
+    interactiveShellInit = ''
+    autoload -U colors && colors
+
+    PS1='\[\033[0;35m\]\u@\[\033[0;35m\]\h:\[\033[0;33m\] \W\[\033[00m\]$'
+    '';
+
+    ohMyZsh = {
+      enable = true;
+      theme = "robbyrussell";
+
+      plugins = [
+        "git"
+        "sudo"
+      ];
+    };
+  };
 
   programs.git.enable = true;
 
@@ -137,10 +162,26 @@
     tealdeer
     xclip
     bat
+    openssh
     zed-editor
     vscode
-  ];
+    discord
+    slack
+    direnv
 
+    inputs.darkly.packages.${pkgs.system}.darkly-qt5
+    inputs.darkly.packages.${pkgs.system}.darkly-qt6
+  ] ++ [ pkgs.libsForQt5.qt5ct pkgs.kdePackages.qt6ct ];
+
+   # Set the default Qt platform theme to qt5ct/qt6ct
+  # This ensures Qt apps look for the theme configured in qt5ct/qt6ct
+  qt.platformTheme = "qt5ct";
+  
+  # Optional: If you want to force the style globally via environment variable
+  environment.sessionVariables = {
+    QT_STYLE_OVERRIDE = "Darkly";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -167,5 +208,28 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = false;
+    flake = "/etc/nixos#nixos";
+    dates = "daily";
+  };
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 20d";
+  };
+
+
+  nix.optimise = {
+    automatic = true;
+    dates = ["weekly"];
+  };
+
+  hardware.cpu.intel.updateMicrocode = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
 }

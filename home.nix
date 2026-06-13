@@ -11,4 +11,18 @@
   ];
 
   programs.bash.enable = true;
+
+  programs.git = {
+    enable = true;
+
+    userName = "rajcspsg";
+
+    userEmail = "rajcspsg+YOUR_USERNAME@users.noreply.github.com";
+
+    extraConfig = {
+     init.defaultBranch = "main";
+     push.autoSetupRemote = true;
+     core.editor = "nvim";
+  };
+};
 }
