@@ -4,7 +4,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     darkly.url = "github:Bali10050/Darkly";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -14,7 +14,14 @@
       specialArgs = { inherit inputs; };
       modules = [ 
       	/etc/nixos/configuration.nix
+	home-manager.nixosModules.default
 
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+
+          home-manager.users.rajkumar = import ./home.nix;
+        }
       ];
     };
   };
