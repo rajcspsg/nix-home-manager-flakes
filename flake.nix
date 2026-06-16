@@ -12,6 +12,19 @@
       url = "github:rajcspsg/nvim";
       flake = false;
     };
+    haskell-tools.url = "github:MrcJkb/haskell-tools.nvim";
+    dap-repl-highlights = {
+      url = "github:LiadOz/nvim-dap-repl-highlights";
+      flake = false;
+    };
+    chainsaw = {
+      url = "github:chrisgrieser/nvim-chainsaw";
+      flake = false;
+    };
+    windex = { 
+      url = "github:declancm/windex.nvim";
+      flake = false;
+    };
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
