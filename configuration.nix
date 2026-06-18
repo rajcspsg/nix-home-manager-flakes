@@ -20,10 +20,11 @@
   # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-
-
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.initrd.luks.devices = { };
+
 
   networking.hostName = "nixos"; # Define your hostname.
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -35,6 +36,8 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  virtualisation.virtualbox.guest.enable = false;
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -144,6 +147,10 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
+   nixpkgs.config.permittedInsecurePackages = [
+    "olm-3.2.16"
+   ];
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -168,6 +175,8 @@
     discord
     slack
     direnv
+    element-desktop
+    nheko
 
     inputs.darkly.packages.${pkgs.system}.darkly-qt5
     inputs.darkly.packages.${pkgs.system}.darkly-qt6
@@ -181,6 +190,7 @@
   environment.sessionVariables = {
     QT_STYLE_OVERRIDE = "Darkly";
     QT_QPA_PLATFORMTHEME = "qt5ct";
+    ZED_ALLOW_EMULATED_GPU = "1";
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -207,7 +217,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "26.05"; # Did you read the comment?
+  system.stateVersion = "26.11"; # Did you read the comment?
   system.autoUpgrade = {
     enable = true;
     allowReboot = false;

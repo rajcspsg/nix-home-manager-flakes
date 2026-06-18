@@ -4,7 +4,7 @@
   home.username = "rajkumar";
   home.homeDirectory = "/home/rajkumar";
 
-  home.stateVersion = "26.05";
+  home.stateVersion = "26.11";
 
   home.sessionVariables = {
     ZED_ALLOW_EMULATED_GPU="1";
@@ -53,6 +53,7 @@
      telescope-nvim
      telescope-sg
      telescope-undo-nvim
+     telescope-hierarchy-nvim
      glance-nvim
      vim-terminator
      git-blame-nvim
@@ -78,6 +79,61 @@
      snacks-nvim
      trouble-nvim
      which-key-nvim
+     nvim-parinfer
+     vim-sexp
+     vim-sexp-mappings-for-regular-people
+     mason-nvim-dap-nvim
+     nvim-dap-rr
+     nvim-hlslens
+     nvim-lightbulb
+     nvim-dap-go
+     gitsigns-nvim
+     lsp-inlayhints-nvim
+     neotest-vitest
+     tssorter-nvim
+     nvim-dap
+     nvim-dap-python
+     nvim-dap-virtual-text
+     nvim-jdtls
+     neotest-haskell
+     nvim-jdtls
+     lsp-status-nvim
+     plenary-nvim
+     lualine-nvim
+     neo-tree-nvim
+     neotest
+     neotest-go
+     neotest-jest
+     neotest-playwright
+     nvim-nio
+     telescope-fzf-native-nvim
+     telescope-symbols-nvim
+     telescope-ui-select-nvim
+     nvim-web-devicons
+     lspsaga-nvim
+     none-ls-nvim
+     lspkind-nvim
+     typescript-tools-nvim
+     tiny-glimmer-nvim
+     vim-dispatch
+     vim-dispatch-neovim
+     nvim-dap-ui
+     neotest-java
+     crates-nvim
+     nvim-metals
+     diffview-nvim
+     smear-cursor-nvim
+     conform-nvim
+     overseer-nvim
+     vim-floaterm
+     mason-lspconfig-nvim
+     mason-nvim
+     nvim-autopairs
+     nvim-ts-autotag
+     pretty-fold-nvim
+     fold-preview-nvim
+     nvim-vtsls
+     nvim-treesitter-context
     ] ++ [
      (pkgs.vimUtils.buildVimPlugin {
 
@@ -117,13 +173,39 @@
     (pkgs.vimUtils.buildVimPlugin {
       pname = "yaml.nvim";
       version = "unstable";
-      src =builtins.fetchGit {
+      src = builtins.fetchGit {
         url = "https://tangled.org/cuducos.me/yaml.nvim";
         ref = "main";
      };
     }) 
 
-    
+    (pkgs.vimUtils.buildVimPlugin {
+      pname = "treesorter.nvim";
+      version = "unstable";
+      src = builtins.fetchGit {
+        url = "https://github.com/maxbol/treesorter.nvim";
+      };
+    })
+
+    (pkgs.vimUtils.buildVimPlugin {
+      pname = "telescope_hoogle";
+      version = "unstable";
+
+      src = builtins.fetchGit {
+        url = "https://github.com/luc-tielen/telescope_hoogle";
+      };
+    })
+
+
+    (pkgs.vimUtils.buildVimPlugin { 
+      pname = "symbols.nvim";
+      version = "unstable";
+
+      src = builtins.fetchGit {
+        url = "https://github.com/oskarrrrrrr/symbols.nvim";
+        ref = "main";
+      };
+    })
 
     ];
 
