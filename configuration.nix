@@ -65,6 +65,7 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -140,6 +141,8 @@
   programs.git.enable = true;
 
   programs.vscode.enable = true;
+  programs.xwayland.enable = true;
+
   #programs.rio.enable = true;
 
   # Allow unfree packages
@@ -177,9 +180,20 @@
     direnv
     element-desktop
     nheko
+    #qt.kvantum
+    libsForQt5.qtstyleplugin-kvantum
 
     inputs.darkly.packages.${pkgs.system}.darkly-qt5
     inputs.darkly.packages.${pkgs.system}.darkly-qt6
+
+    kdePackages.plasma-workspace
+    kdePackages.plasma-desktop
+    kdePackages.dolphin
+    kdePackages.konsole
+
+    noto-fonts
+    inter
+    bibata-cursors
   ] ++ [ pkgs.libsForQt5.qt5ct pkgs.kdePackages.qt6ct ];
 
    # Set the default Qt platform theme to qt5ct/qt6ct
@@ -204,6 +218,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  programs.dconf.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -241,5 +256,17 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+  };
+
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "breeze";
+      themePackages = [
+        pkgs.kdePackages.breeze-plymouth
+      ];
+    };
+
+    kernelParams = [ "quiet" "splash" ];
   };
 }

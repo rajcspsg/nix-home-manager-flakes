@@ -5,6 +5,61 @@
   ...
 }:
 
+let
+  macTahoeTheme = pkgs.stdenvNoCC.mkDerivation {
+    pname = "mactahoe-gtk-theme";
+    version = "master";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "vinceliuice";
+      repo = "MacTahoe-gtk-theme";
+      rev = "master";
+      hash = "sha256-/XTUUq5Uyuxgr0cZTmkUmj2/NrM1GEZ7pgrnlqKI6K0=";
+    };
+
+    dontBuild = true;
+
+    installPhase = ''
+      mkdir -p $out/share/themes
+
+      # Install GTK themes directly from source (no installer)
+      cp -r src/* $out/share/themes/
+    '';
+  };
+  mactahoe-icons = pkgs.stdenvNoCC.mkDerivation {
+    pname = "mactahoe-icon-theme";
+    version = "unstable";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "vinceliuice";
+      repo = "MacTahoe-icon-theme";
+      rev = "main";
+      sha256 = "sha256-YCtpagkXhRwD9NJRvgskq7yf4qr4XqUxQYUfyKD7mUs=";
+    };
+
+    installPhase = ''
+      mkdir -p $out/share/icons
+      cp -r src/* $out/share/icons/
+
+    '';
+  };
+  mactahoe-cursors = pkgs.stdenvNoCC.mkDerivation {
+    pname = "mactahoe-cursors";
+    version = "unstable";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "vinceliuice";
+      repo = "MacTahoe-icon-theme";
+      rev = "main";
+      sha256 = "sha256-YCtpagkXhRwD9NJRvgskq7yf4qr4XqUxQYUfyKD7mUs=";
+    };
+
+    installPhase = ''
+      mkdir -p $out/share/icons/MacTahoe
+      cp -r cursors/* $out/share/icons/MacTahoe/
+    '';
+  };
+in
 {
   home.username = "rajkumar";
   home.homeDirectory = "/home/rajkumar";
@@ -15,6 +70,9 @@
     ZED_ALLOW_EMULATED_GPU = "1";
   };
   home.packages = with pkgs; [
+    bash
+    sassc
+    macTahoeTheme
     firefox
     tree-sitter
     nixd
@@ -28,6 +86,9 @@
     vtsls
     dhall-lsp-server
     delve
+    macTahoeTheme
+    mactahoe-icons
+    mactahoe-cursors
   ];
 
   programs.bash.enable = true;
@@ -220,58 +281,61 @@
 
   xdg.configFile."nvim".source = inputs.nvim-config;
 
-  imports = [
-    inputs.plasma-manager.homeManagerModules.plasma-manager
-  ];
   programs.plasma = {
     enable = true;
 
-    panels = [
-      # ===== Top macOS-style menu bar =====
-      {
-        location = "top";
-        height = 28;
+    kwin = {
+      effects = {
+        blur.enable = true;
+      };
+    };
+  };
+  # home.file.".gtkrc-2.0".force = true;
+  xdg.configFile."gtk-3.0/settings.ini".force = true;
+  xdg.configFile."gtk-4.0/settings.ini".force = true;
+  xdg.configFile."kdeglobals".force = true;
+  xdg.configFile."kdeglobals".text = ''
+    [Icons]
+    Theme=MacTahoe
+    [Cursor]
+    Theme=MacTahoe
+    Size=24
+  '';
 
-        widgets = [
-          # ===== LEFT =====
-          "org.kde.plasma.kickoff"
-          "org.kde.plasma.appmenu"
+  imports = [
+    inputs.plasma-manager.homeModules.plasma-manager
+  ];
 
-          # ===== PUSH EVERYTHING AFTER THIS TO RIGHT =====
-          "org.kde.plasma.panelspacer"
+  home.pointerCursor = {
+    package = mactahoe-cursors;
 
-          # ===== RIGHT =====
-          "org.kde.plasma.systemtray"
-          "org.kde.plasma.digitalclock"
-        ];
-      }
+    name = "MacTahoe";
+    size = 24;
 
-      # ===== Bottom dock =====
-      {
-        location = "bottom";
-        floating = true;
-        alignment = "center";
+    gtk.enable = true;
+    x11.enable = true;
+  };
 
-        height = 48;
-        hiding = "dodgewindows";
+  qt = {
+    enable = true;
+    platformTheme = "qtct";
+  };
+  gtk = {
+    enable = true;
 
-        widgets = [
-          { name = "org.kde.plasma.panelspacer"; }
-          {
-            name = "org.kde.plasma.icontasks";
+    theme = {
+      name = "MacTahoe-Dark";
+      package = macTahoeTheme;
+    };
 
-            config = {
-              launchers = [
-                "applications:org.kde.dolphin.desktop"
-                "applications:brave-browser.desktop"
-                "applications:rio.desktop"
-                "applications:dev.zed.Zed.desktop"
-              ];
-            };
-          }
-          { name = "org.kde.plasma.panelspacer"; }
-        ];
-      }
-    ];
+    iconTheme = {
+      name = "MacTahoe";
+    };
+
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
   };
 }
