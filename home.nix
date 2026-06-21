@@ -43,6 +43,7 @@ let
 
     '';
   };
+
   mactahoe-cursors = pkgs.stdenvNoCC.mkDerivation {
     pname = "mactahoe-cursors";
     version = "unstable";
@@ -89,6 +90,8 @@ in
     macTahoeTheme
     mactahoe-icons
     mactahoe-cursors
+    tela-circle-icon-theme
+    orchis-theme
   ];
 
   programs.bash.enable = true;
@@ -134,7 +137,6 @@ in
         nui-nvim
         neogit
         conjure
-        cmp-conjure
         vim-illuminate
         iron-nvim
         treesj
@@ -237,6 +239,44 @@ in
           pname = "windex";
           version = "unstable";
           src = inputs.windex;
+        })
+
+        (pkgs.vimUtils.buildVimPlugin {
+          pname = "bufterm";
+          version = "unstable";
+          src = inputs.nvim-bufterm;
+        })
+
+        (pkgs.vimUtils.buildVimPlugin {
+          pname = "SmoothCursor";
+          version = "unstable";
+          src = inputs.nvim-smoothcursor;
+        })
+
+        (pkgs.vimUtils.buildVimPlugin {
+          pname = "nvim-tmux-navigation";
+          version = "unstable";
+          src = inputs.nvim-tmux-navigation;
+        })
+
+        (pkgs.vimUtils.buildVimPlugin {
+          pname = "close-buffers";
+          version = "unstable";
+          src = inputs.nvim-close-buffers;
+        })
+
+        (pkgs.vimUtils.buildVimPlugin {
+          pname = "neotest-zig";
+          version = "unstable";
+          src = inputs.neotest-zig;
+          dontCheckForLuaModules = true;
+          doCheck = false;
+        })
+
+        (pkgs.vimUtils.buildVimPlugin {
+          pname = "meow.yarn.nvim";
+          version = "unstable";
+          src = inputs.nvim-meow-yarn;
         })
 
         (pkgs.vimUtils.buildVimPlugin {

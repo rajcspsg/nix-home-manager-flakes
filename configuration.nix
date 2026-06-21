@@ -157,6 +157,8 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    wezterm
+    starship
     curl
     git
     warp-terminal
@@ -189,6 +191,7 @@
     kdePackages.plasma-workspace
     kdePackages.plasma-desktop
     kdePackages.dolphin
+    kdePackages.qtstyleplugin-kvantum
     kdePackages.konsole
 
     noto-fonts
@@ -202,7 +205,7 @@
   
   # Optional: If you want to force the style globally via environment variable
   environment.sessionVariables = {
-    QT_STYLE_OVERRIDE = "Darkly";
+    QT_STYLE_OVERRIDE = "Kvantum";
     QT_QPA_PLATFORMTHEME = "qt5ct";
     ZED_ALLOW_EMULATED_GPU = "1";
   };
@@ -258,15 +261,4 @@
     powerOnBoot = true;
   };
 
-  boot = {
-    plymouth = {
-      enable = true;
-      theme = "breeze";
-      themePackages = [
-        pkgs.kdePackages.breeze-plymouth
-      ];
-    };
-
-    kernelParams = [ "quiet" "splash" ];
-  };
 }

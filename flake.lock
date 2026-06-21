@@ -451,6 +451,22 @@
         "type": "github"
       }
     },
+    "neotest-zig": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742162145,
+        "narHash": "sha256-nW1jkx3kZU5qOqAByaGH45Scku/TYtT1I5UoZ36/WC4=",
+        "owner": "lawrence-laz",
+        "repo": "neotest-zig",
+        "rev": "de63f3b9a182d374d2e71cf44385326682ec90e7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lawrence-laz",
+        "repo": "neotest-zig",
+        "type": "github"
+      }
+    },
     "neovim-nightly": {
       "inputs": {
         "flake-parts": "flake-parts_3",
@@ -610,19 +626,99 @@
         "type": "github"
       }
     },
+    "nvim-bufterm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699719976,
+        "narHash": "sha256-m/1PhcVoL46v/Q0sxwiw9MmCH3h+dDXvSPDjjEPDkjU=",
+        "owner": "boltlessengineer",
+        "repo": "bufterm.nvim",
+        "rev": "7aae848dff66a24425b4dcaf0567c4620edf45be",
+        "type": "github"
+      },
+      "original": {
+        "owner": "boltlessengineer",
+        "repo": "bufterm.nvim",
+        "type": "github"
+      }
+    },
+    "nvim-close-buffers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1636931460,
+        "narHash": "sha256-/jk38ebxKTlyH3AsrSQWMl/cErmu6threyy/MIrdzD4=",
+        "owner": "kazhala",
+        "repo": "close-buffers.nvim",
+        "rev": "3acbcad1211572342632a6c0151f839e7dead27f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kazhala",
+        "repo": "close-buffers.nvim",
+        "type": "github"
+      }
+    },
     "nvim-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1781772644,
-        "narHash": "sha256-4P2f7pM/8ubLerNo2m6ExMllnMjqTbUzOJkvRInNMKE=",
+        "lastModified": 1782000410,
+        "narHash": "sha256-mpsGfP4nHyBIooBL2lqY9z1SU00GFDnhjpsKhxJ0470=",
         "owner": "rajcspsg",
         "repo": "nvim",
-        "rev": "ecaa286b7cc3406df369243d4dca5db97d09c918",
+        "rev": "c79c8826f7cb166067a3f80a86f62728f6ab4a78",
         "type": "github"
       },
       "original": {
         "owner": "rajcspsg",
         "repo": "nvim",
+        "type": "github"
+      }
+    },
+    "nvim-meow-yarn": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776010518,
+        "narHash": "sha256-TtyvUT2moyi/F2s81eLRbFwKht42iu4oBC3gA/KVIlQ=",
+        "owner": "retran",
+        "repo": "meow.yarn.nvim",
+        "rev": "507250e4c452d119cc46c7ca763b9acc72b3e20f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "retran",
+        "repo": "meow.yarn.nvim",
+        "type": "github"
+      }
+    },
+    "nvim-smoothcursor": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1726648986,
+        "narHash": "sha256-P0jGm5ODEVbtmqPGgDFBPDeuOF49CFq5x1PzubEJgaM=",
+        "owner": "gen740",
+        "repo": "SmoothCursor.nvim",
+        "rev": "12518b284e1e3f7c6c703b346815968e1620bee2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gen740",
+        "repo": "SmoothCursor.nvim",
+        "type": "github"
+      }
+    },
+    "nvim-tmux-navigation": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707171454,
+        "narHash": "sha256-CxAgQSbOrg/SsQXupwCv8cyZXIB7tkWO+Y6FDtoR8xk=",
+        "owner": "alexghergh",
+        "repo": "nvim-tmux-navigation",
+        "rev": "4898c98702954439233fdaf764c39636681e2861",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alexghergh",
+        "repo": "nvim-tmux-navigation",
         "type": "github"
       }
     },
@@ -656,8 +752,14 @@
         "darkly": "darkly",
         "haskell-tools": "haskell-tools",
         "home-manager": "home-manager",
+        "neotest-zig": "neotest-zig",
         "nixpkgs": "nixpkgs_5",
+        "nvim-bufterm": "nvim-bufterm",
+        "nvim-close-buffers": "nvim-close-buffers",
         "nvim-config": "nvim-config",
+        "nvim-meow-yarn": "nvim-meow-yarn",
+        "nvim-smoothcursor": "nvim-smoothcursor",
+        "nvim-tmux-navigation": "nvim-tmux-navigation",
         "plasma-manager": "plasma-manager",
         "windex": "windex"
       }
