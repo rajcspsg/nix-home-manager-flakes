@@ -1,8 +1,11 @@
 {
-  description = "A very basic flake";
+  description = "NixOS + Home Manager flake with modular Neovim and KDE Plasma config";
+
   inputs = {
+    # Core system inputs
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     darkly.url = "github:Bali10050/Darkly";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,6 +17,7 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    # Neovim config and plugins
     nvim-config = {
       url = "github:rajcspsg/nvim";
       flake = false;
@@ -43,45 +47,21 @@
       url = "github:alexghergh/nvim-tmux-navigation";
       flake = false;
     };
-
     nvim-close-buffers = {
       url = "github:kazhala/close-buffers.nvim";
       flake = false;
     };
-
     neotest-zig = {
       url = "github:lawrence-laz/neotest-zig";
       flake = false;
     };
-
     nvim-meow-yarn = {
       url = "github:retran/meow.yarn.nvim";
       flake = false;
     };
   };
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
-    {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          { nixpkgs.hostPlatform = "x86_64-linux"; }
-          /etc/nixos/configuration.nix
-          home-manager.nixosModules.default
 
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.rajkumar = import ./home.nix;
-          }
-        ];
-      };
-    };
+  outputs =
+    { self, ... }@inputs:
+    import ./flake/nixos.nix inputs;
 }
