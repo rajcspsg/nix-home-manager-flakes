@@ -16,6 +16,23 @@
         "type": "github"
       }
     },
+    "core": {
+      "inputs": {
+        "darkly": "darkly",
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs_2",
+        "plasma-manager": "plasma-manager"
+      },
+      "locked": {
+        "path": "./flake/inputs/core",
+        "type": "path"
+      },
+      "original": {
+        "path": "./flake/inputs/core",
+        "type": "path"
+      },
+      "parent": []
+    },
     "dap-repl-highlights": {
       "flake": false,
       "locked": {
@@ -169,6 +186,7 @@
     "flake-parts_3": {
       "inputs": {
         "nixpkgs-lib": [
+          "neovim",
           "haskell-tools",
           "neorocks",
           "neovim-nightly",
@@ -213,6 +231,7 @@
         "git-hooks": "git-hooks",
         "luvit-meta": "luvit-meta",
         "nixpkgs": [
+          "neovim",
           "haskell-tools",
           "nixpkgs"
         ]
@@ -236,6 +255,7 @@
         "flake-compat": "flake-compat_2",
         "gitignore": "gitignore",
         "nixpkgs": [
+          "neovim",
           "haskell-tools",
           "gen-luarc",
           "nixpkgs"
@@ -261,6 +281,7 @@
         "flake-compat": "flake-compat_3",
         "gitignore": "gitignore_2",
         "nixpkgs": [
+          "neovim",
           "haskell-tools",
           "nixpkgs"
         ]
@@ -283,7 +304,7 @@
       "inputs": {
         "flake-compat": "flake-compat_5",
         "gitignore": "gitignore_3",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1781733627,
@@ -302,6 +323,7 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
+          "neovim",
           "haskell-tools",
           "gen-luarc",
           "git-hooks",
@@ -325,6 +347,7 @@
     "gitignore_2": {
       "inputs": {
         "nixpkgs": [
+          "neovim",
           "haskell-tools",
           "git-hooks",
           "nixpkgs"
@@ -347,6 +370,7 @@
     "gitignore_3": {
       "inputs": {
         "nixpkgs": [
+          "neovim",
           "haskell-tools",
           "neorocks",
           "git-hooks",
@@ -374,14 +398,14 @@
         "gen-luarc": "gen-luarc",
         "git-hooks": "git-hooks_2",
         "neorocks": "neorocks",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1782261497,
-        "narHash": "sha256-IryDLoiWyd7qIq9S25MYLeZPqkFznop4QdWSzEtn0X0=",
+        "lastModified": 1782161977,
+        "narHash": "sha256-BCcZIklvqqPBEItpRNYNFnbuX3x63g1rlqLcUbPfVeU=",
         "owner": "MrcJkb",
         "repo": "haskell-tools.nvim",
-        "rev": "38856a925dbdad4bc9c7cb8a4d7d143d7344de9d",
+        "rev": "357ed60f38d366da23944c458792ce9386df4414",
         "type": "github"
       },
       "original": {
@@ -393,6 +417,7 @@
     "home-manager": {
       "inputs": {
         "nixpkgs": [
+          "core",
           "nixpkgs"
         ]
       },
@@ -433,6 +458,7 @@
         "git-hooks": "git-hooks_3",
         "neovim-nightly": "neovim-nightly",
         "nixpkgs": [
+          "neovim",
           "haskell-tools",
           "nixpkgs"
         ]
@@ -467,11 +493,35 @@
         "type": "github"
       }
     },
+    "neovim": {
+      "inputs": {
+        "chainsaw": "chainsaw",
+        "dap-repl-highlights": "dap-repl-highlights",
+        "haskell-tools": "haskell-tools",
+        "neotest-zig": "neotest-zig",
+        "nvim-bufterm": "nvim-bufterm",
+        "nvim-close-buffers": "nvim-close-buffers",
+        "nvim-config": "nvim-config",
+        "nvim-meow-yarn": "nvim-meow-yarn",
+        "nvim-smoothcursor": "nvim-smoothcursor",
+        "nvim-tmux-navigation": "nvim-tmux-navigation",
+        "windex": "windex"
+      },
+      "locked": {
+        "path": "./flake/inputs/neovim",
+        "type": "path"
+      },
+      "original": {
+        "path": "./flake/inputs/neovim",
+        "type": "path"
+      },
+      "parent": []
+    },
     "neovim-nightly": {
       "inputs": {
         "flake-parts": "flake-parts_3",
         "neovim-src": "neovim-src",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1782173092,
@@ -564,27 +614,27 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1770073757,
-        "narHash": "sha256-Vy+G+F+3E/Tl+GMNgiHl9Pah2DgShmIUBJXmbiQPHbI=",
-        "owner": "NixOS",
+        "lastModified": 1781577229,
+        "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "47472570b1e607482890801aeaf29bfb749884f6",
+        "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "owner": "nixos",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1781607440,
-        "narHash": "sha256-rxO+uc/KFbSJp+pgyXRuAX6QlG9hJdnt0BXpEQRXY+U=",
+        "lastModified": 1770073757,
+        "narHash": "sha256-Vy+G+F+3E/Tl+GMNgiHl9Pah2DgShmIUBJXmbiQPHbI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3e41b24abd260e8f71dbe2f5737d24122f972158",
+        "rev": "47472570b1e607482890801aeaf29bfb749884f6",
         "type": "github"
       },
       "original": {
@@ -604,7 +654,7 @@
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
@@ -612,16 +662,16 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1781577229,
-        "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
+        "lastModified": 1781607440,
+        "narHash": "sha256-rxO+uc/KFbSJp+pgyXRuAX6QlG9hJdnt0BXpEQRXY+U=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
+        "rev": "3e41b24abd260e8f71dbe2f5737d24122f972158",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -725,9 +775,11 @@
     "plasma-manager": {
       "inputs": {
         "home-manager": [
+          "core",
           "home-manager"
         ],
         "nixpkgs": [
+          "core",
           "nixpkgs"
         ]
       },
@@ -747,21 +799,8 @@
     },
     "root": {
       "inputs": {
-        "chainsaw": "chainsaw",
-        "dap-repl-highlights": "dap-repl-highlights",
-        "darkly": "darkly",
-        "haskell-tools": "haskell-tools",
-        "home-manager": "home-manager",
-        "neotest-zig": "neotest-zig",
-        "nixpkgs": "nixpkgs_5",
-        "nvim-bufterm": "nvim-bufterm",
-        "nvim-close-buffers": "nvim-close-buffers",
-        "nvim-config": "nvim-config",
-        "nvim-meow-yarn": "nvim-meow-yarn",
-        "nvim-smoothcursor": "nvim-smoothcursor",
-        "nvim-tmux-navigation": "nvim-tmux-navigation",
-        "plasma-manager": "plasma-manager",
-        "windex": "windex"
+        "core": "core",
+        "neovim": "neovim"
       }
     },
     "systems": {
