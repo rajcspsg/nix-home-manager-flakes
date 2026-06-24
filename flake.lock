@@ -799,8 +799,68 @@
     },
     "root": {
       "inputs": {
+        "chainsaw": [
+          "neovim",
+          "chainsaw"
+        ],
         "core": "core",
-        "neovim": "neovim"
+        "dap-repl-highlights": [
+          "neovim",
+          "dap-repl-highlights"
+        ],
+        "darkly": [
+          "core",
+          "darkly"
+        ],
+        "haskell-tools": [
+          "neovim",
+          "haskell-tools"
+        ],
+        "home-manager": [
+          "core",
+          "home-manager"
+        ],
+        "neotest-zig": [
+          "neovim",
+          "neotest-zig"
+        ],
+        "neovim": "neovim",
+        "nixpkgs": [
+          "core",
+          "nixpkgs"
+        ],
+        "nvim-bufterm": [
+          "neovim",
+          "nvim-bufterm"
+        ],
+        "nvim-close-buffers": [
+          "neovim",
+          "nvim-close-buffers"
+        ],
+        "nvim-config": [
+          "neovim",
+          "nvim-config"
+        ],
+        "nvim-meow-yarn": [
+          "neovim",
+          "nvim-meow-yarn"
+        ],
+        "nvim-smoothcursor": [
+          "neovim",
+          "nvim-smoothcursor"
+        ],
+        "nvim-tmux-navigation": [
+          "neovim",
+          "nvim-tmux-navigation"
+        ],
+        "plasma-manager": [
+          "core",
+          "plasma-manager"
+        ],
+        "windex": [
+          "neovim",
+          "windex"
+        ]
       }
     },
     "systems": {
