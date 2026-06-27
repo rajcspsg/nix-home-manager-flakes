@@ -1,64 +1,32 @@
 {
-  description = "A very basic flake";
+  description = "NixOS + Home Manager flake with modular Neovim and KDE Plasma config";
+
+  # Input definitions live in path subflakes under flake/inputs/.
+  # Nix requires a static attrset here, so nested inputs are re-exported via follows.
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    darkly.url = "github:Bali10050/Darkly";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    core.url = "path:./flake/inputs/core";
+    neovim.url = "path:./flake/inputs/neovim";
 
-    plasma-manager = {
-      url = "github:pjones/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
+    # core inputs
+    nixpkgs.follows = "core/nixpkgs";
+    home-manager.follows = "core/home-manager";
+    plasma-manager.follows = "core/plasma-manager";
+    darkly.follows = "core/darkly";
 
-    nvim-config = {
-      url = "github:rajcspsg/nvim";
-      flake = false;
-    };
-    haskell-tools.url = "github:MrcJkb/haskell-tools.nvim";
-    dap-repl-highlights = {
-      url = "github:LiadOz/nvim-dap-repl-highlights";
-      flake = false;
-    };
-    chainsaw = {
-      url = "github:chrisgrieser/nvim-chainsaw";
-      flake = false;
-    };
-    windex = {
-      url = "github:declancm/windex.nvim";
-      flake = false;
-    };
-    nvim-bufterm = {
-      url = "github:boltlessengineer/bufterm.nvim";
-      flake = false;
-    };
-    nvim-smoothcursor = {
-      url = "github:gen740/SmoothCursor.nvim";
-      flake = false;
-    };
-    nvim-tmux-navigation = {
-      url = "github:alexghergh/nvim-tmux-navigation";
-      flake = false;
-    };
-
-    nvim-close-buffers = {
-      url = "github:kazhala/close-buffers.nvim";
-      flake = false;
-    };
-
-    neotest-zig = {
-      url = "github:lawrence-laz/neotest-zig";
-      flake = false;
-    };
-
-    nvim-meow-yarn = {
-      url = "github:retran/meow.yarn.nvim";
-      flake = false;
-    };
+    # neovim inputs
+    nvim-config.follows = "neovim/nvim-config";
+    haskell-tools.follows = "neovim/haskell-tools";
+    dap-repl-highlights.follows = "neovim/dap-repl-highlights";
+    chainsaw.follows = "neovim/chainsaw";
+    windex.follows = "neovim/windex";
+    nvim-bufterm.follows = "neovim/nvim-bufterm";
+    nvim-smoothcursor.follows = "neovim/nvim-smoothcursor";
+    nvim-tmux-navigation.follows = "neovim/nvim-tmux-navigation";
+    nvim-close-buffers.follows = "neovim/nvim-close-buffers";
+    neotest-zig.follows = "neovim/neotest-zig";
+    nvim-meow-yarn.follows = "neovim/nvim-meow-yarn";
   };
+
   outputs =
     {
       self,
